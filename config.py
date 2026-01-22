@@ -31,7 +31,29 @@ EML_DIR = DATA_DIR / "eml"
 # Processed outputs
 TRANSCRIPTS_DIR = OUTPUTS_DIR / "transcripts"
 IMAGE_TEXT_DIR = OUTPUTS_DIR / "image_text"
-PDF_VISION_DIR = OUTPUTS_DIR / "pdf_page_vision"
+EMAIL_TEXT_DIR = OUTPUTS_DIR / "email_text"   # ✅ NEW
+PDF_VISION_DIR = OUTPUTS_DIR / "pdf_page_vision"  # (can keep even if unused)
+# If you use text-only PDFs, you don’t need PDF_VISION_DIR, but leaving it is fine.
+
+# =========================
+# Chunking & retrieval
+# =========================
+CHUNK_SIZE = 1200
+CHUNK_OVERLAP = 200
+TOP_K = 5
+
+# =========================
+# PDF text-only threshold
+# =========================
+MIN_TEXT_CHARS = 200
+
+# =========================
+# OpenAI models
+# =========================
+CHAT_MODEL = "gpt-4o-mini"
+EMBEDDING_MODEL = "text-embedding-3-small"
+TRANSCRIPTION_MODEL = "gpt-4o-mini-transcribe"
+VISION_MODEL = "gpt-4o-mini"
 
 # Create folders if they don't exist
 for p in [
@@ -45,27 +67,8 @@ for p in [
     OUTPUTS_DIR,
     TRANSCRIPTS_DIR,
     IMAGE_TEXT_DIR,
+    EMAIL_TEXT_DIR,         # ✅ NEW
     PDF_VISION_DIR,
     CHROMA_DIR,
 ]:
     p.mkdir(parents=True, exist_ok=True)
-
-# =========================
-# OpenAI models
-# =========================
-CHAT_MODEL = "gpt-4o-mini"
-EMBEDDING_MODEL = "text-embedding-3-small"
-TRANSCRIPTION_MODEL = "gpt-4o-mini-transcribe"
-VISION_MODEL = "gpt-4o-mini"  # vision-capable
-
-# =========================
-# Chunking & retrieval
-# =========================
-CHUNK_SIZE = 1200
-CHUNK_OVERLAP = 200
-TOP_K = 5
-
-# =========================
-# PDF rule (later)
-# =========================
-MIN_TEXT_CHARS = 200

@@ -3,7 +3,7 @@ from __future__ import annotations
 
 import os
 import hashlib
-from typing import List, Optional
+from typing import List
 
 # Reduce noisy telemetry logs (safe if ignored by some versions)
 os.environ["ANONYMIZED_TELEMETRY"] = "FALSE"
@@ -101,6 +101,7 @@ if __name__ == "__main__":
     import images_ingest
     import audio_ingest
     import email_ingest
+    import pdf_ingest  # ✅ NEW: PDF text-only ingestion
 
     # Control reset without editing code:
     # Windows PowerShell example:
@@ -112,6 +113,9 @@ if __name__ == "__main__":
     print("🔹 Ingesting text documents (txt + html)...")
     text_docs = ingest.ingest_all_text_only()
 
+    print("🔹 Ingesting PDFs (text-only, no OCR)...")
+    pdf_docs = pdf_ingest.load_pdfs_text_only()
+
     print("🔹 Ingesting images (OpenAI Vision → text)...")
     image_docs = images_ingest.load_images()
 
@@ -121,11 +125,11 @@ if __name__ == "__main__":
     print("🔹 Ingesting emails (.eml → text)...")
     email_docs = email_ingest.load_emails()
 
-    all_docs = text_docs + image_docs + audio_docs + email_docs
+    all_docs = text_docs + pdf_docs + image_docs + audio_docs + email_docs
 
     print(
         "Total docs: "
-        f"{len(text_docs)} text + {len(image_docs)} image + "
+        f"{len(text_docs)} text + {len(pdf_docs)} pdf + {len(image_docs)} image + "
         f"{len(audio_docs)} audio + {len(email_docs)} email"
     )
 
@@ -151,8 +155,8 @@ if __name__ == "__main__":
     print(f"✅ Reset used: {BUILD_RESET}")
     print(f"✅ Count before: {before} | Count after: {after}")
 
-    # Quick retrieval test (email-specific)
-    query = "When is NLND access restricted and which entrance should students use?"
+    # Quick retrieval test (PDF-focused, so you can verify PDFs are included)
+    query = "What does the PDF say about the campus or buildings?"
     results = db.similarity_search(query, k=config.TOP_K)
 
     print(f"\nQuery: {query}")
@@ -161,3 +165,4 @@ if __name__ == "__main__":
         print("Top result type:", results[0].metadata.get("type"))
         print("Top result source:", results[0].metadata.get("source"))
         print(results[0].page_content[:700])
+
