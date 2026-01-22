@@ -1,0 +1,45 @@
+{
+  "visible_text": [
+    "Campus Overview Neukölln",
+    "NLND Neuland",
+    "Neuköllnische Allee 80",
+    "12057 Berlin",
+    "SHED",
+    "Hall",
+    "Cube",
+    "Sonnenallee",
+    "Use SRH- ID for more information about the learning spaces outside the campus:"
+  ],
+  "entities": {
+    "places": [
+      "Neukölln",
+      "Berlin"
+    ],
+    "addresses": [
+      "Neuköllnische Allee 80, 12057 Berlin"
+    ],
+    "organizations": [
+      "SRH"
+    ],
+    "transport": []
+  },
+  "image_summary": "The image is a campus overview map for SRH in Neukölln, Berlin. It highlights various buildings and their names, along with a QR code for additional information.",
+  "details": [
+    "Buildings labeled: SHED, Hall, Cube, Sonnenallee",
+    "Map includes directional indicators (N, E, S, W)",
+    "QR code for more information about learning spaces"
+  ],
+  "search_keywords": [
+    "SRH",
+    "Neukölln",
+    "Berlin",
+    "campus map",
+    "SHED",
+    "Hall",
+    "Cube",
+    "Sonnenallee",
+    "learning spaces",
+    "QR code"
+  ],
+  "_image_mtime": 1765298243.7747014
+}
